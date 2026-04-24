@@ -1,9 +1,9 @@
-// core.js - ContentIQ Agentic Core v8.0 [OMNI-FEED / GOD MODE EDITION]
-// Türkiye'nin tüm medya ve istihbarat ağı (300+ Kaynak) tek bir terminalde toplandı.
+// core.js - ContentIQ Agentic Core v9.0 [GOD MODE + CRYPTO EDITION]
+// OSINT İstihbarat Ağı ve Küresel Kripto Finans Terminali
 
 const SYSTEM_CONFIG = {
-    version: "8.0.0_OMNI_FEED",
-    codename: "Ankara_Noir_Omni",
+    version: "9.0.0_UNDISPUTED",
+    codename: "Ankara_Noir_Omni_Crypto",
     boot_delay: 800
 };
 
@@ -41,7 +41,7 @@ const RSS_DATABASE = {
     ]
 };
 
-// Sondaika bandı için Gündem kanalından rastgele bir veri akışı çekilir.
+// Sondaika bandı için Gündem kanalından rastgele çekim
 RSS_DATABASE['sondakika'] = RSS_DATABASE['gundem'];
 
 // --- 1. YAYIN SES MOTORU ---
@@ -112,25 +112,25 @@ const NewsroomUI = {
         this.root.innerHTML = `
             <header class="border-b border-slate-800 pb-2 px-2 mb-3 flex justify-between items-end shrink-0">
                 <div class="flex items-center gap-4">
-                    <h1 class="text-2xl font-black tracking-tighter text-white">ContentIQ<span class="text-sky-500">.Omni</span></h1>
+                    <h1 class="text-2xl font-black tracking-tighter text-white">ContentIQ<span class="text-sky-500">.Terminal</span></h1>
                     <span class="text-xs px-2 py-1 bg-slate-800 rounded text-slate-400 font-mono" id="live-clock">--:--:--</span>
                 </div>
                 <div class="flex gap-4 text-xs font-mono">
-                    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> OMNI-FEED AKTİF</span>
-                    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> KAYNAK: 312+</span>
+                    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> OMNI-FEED</span>
+                    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> KÜRESEL API</span>
                 </div>
             </header>
 
             <main class="flex-1 flex flex-col md:flex-row gap-3 overflow-hidden px-2 mb-2">
                 <div class="flex-[3] bg-slate-900/50 border border-slate-800 rounded flex flex-col overflow-hidden">
                     <div class="bg-slate-800/80 px-4 py-2 border-b border-slate-700 flex justify-between items-center shrink-0">
-                        <span class="font-bold text-sky-400 font-mono tracking-widest text-sm" id="monitor-title">YAYIN AKIŞI BEKLENİYOR...</span>
+                        <span class="font-bold text-sky-400 font-mono tracking-widest text-sm" id="monitor-title">SİSTEM BAŞLATILIYOR...</span>
                         <div class="text-[10px] text-slate-400 uppercase">Global Data Matrix // v${SYSTEM_CONFIG.version}</div>
                     </div>
-                    <div class="flex-1 p-4 overflow-y-auto custom-scrollbar" id="news-monitor">
-                        <div class="flex flex-col items-center justify-center h-full text-slate-600 space-y-4">
-                            <svg class="w-12 h-12 animate-spin-slow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
-                            <p class="font-mono text-sm tracking-widest">SİSTEM BAŞLATILIYOR</p>
+                    <div class="flex-1 p-4 overflow-y-auto custom-scrollbar relative" id="news-monitor">
+                        <div id="content-overlay" class="absolute inset-0 bg-slate-950/80 z-20 flex flex-col items-center justify-center text-center">
+                            <svg class="w-12 h-12 mb-4 text-sky-700 animate-spin-slow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                            <p class="font-mono text-sm tracking-widest text-sky-500" id="post-title">SİNYAL BEKLENİYOR</p>
                         </div>
                     </div>
                 </div>
@@ -143,7 +143,7 @@ const NewsroomUI = {
                     <div class="flex-1 p-3 overflow-y-auto text-xs space-y-1.5 custom-scrollbar font-mono bg-slate-950" id="terminal-logs"></div>
                     <div class="p-3 border-t border-slate-800 flex gap-2 items-center bg-slate-900 shrink-0">
                         <span class="text-sky-500 font-bold">&gt;</span>
-                        <input type="text" id="cmd-input" class="flex-1 bg-transparent outline-none text-slate-300 placeholder-slate-600 font-mono" placeholder="Komut (Örn: /akis bilim)" autocomplete="off" spellcheck="false">
+                        <input type="text" id="cmd-input" class="flex-1 bg-transparent outline-none text-slate-300 placeholder-slate-600 font-mono" placeholder="Komut (/kripto veya /akis)" autocomplete="off" spellcheck="false">
                     </div>
                 </div>
             </main>
@@ -165,9 +165,10 @@ const NewsroomUI = {
         const totalSources = Object.values(RSS_DATABASE).reduce((acc, val) => acc + val.length, 0) - RSS_DATABASE['sondakika'].length;
         
         const logs = [
-            "ContentIQ Omni-Feed Başlatılıyor...",
-            `OSINT veritabanı bağlandı: Toplam ${totalSources} Küresel ve Yerel Kaynak.`,
-            "Otomatik Pilot devrede."
+            "ContentIQ Terminal Başlatılıyor...",
+            `OSINT veritabanı bağlandı: ${totalSources} Kaynak.`,
+            "Kripto Finans API hazır.",
+            "Komut: /kripto (Borsa) veya /akis (Haber)"
         ];
 
         let delay = 300;
@@ -180,10 +181,7 @@ const NewsroomUI = {
         });
 
         setTimeout(() => {
-            this.addLog("Canlı Ticker (Gündem) başlatılıyor...", false);
             this.startTicker();
-            
-            this.addLog("Ana yayın akışı (Gündem) ekrana veriliyor...", false);
             this.loadMainFeed('gundem');
         }, delay + 500);
     },
@@ -226,6 +224,37 @@ const NewsroomUI = {
         });
     },
 
+    glitchDecrypt(elementId) {
+        const el = document.getElementById(elementId);
+        if(!el) return;
+        const originalHTML = el.innerHTML;
+        const textNodes = [];
+        
+        const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
+        let node;
+        while (node = walker.nextNode()) {
+            if(node.nodeValue.trim().length > 0) textNodes.push(node);
+        }
+
+        let iterations = 0;
+        const interval = setInterval(() => {
+            textNodes.forEach(n => {
+                n.nodeValue = n.nodeValue.split('').map(() => 
+                    String.fromCharCode(33 + Math.random() * 94)
+                ).join('');
+            });
+
+            AudioEngine.playKeystroke();
+
+            iterations++;
+            if (iterations > 15) {
+                clearInterval(interval);
+                el.innerHTML = originalHTML;
+                AudioEngine.playBeep();
+            }
+        }, 40);
+    },
+
     startTicker() {
         const feedList = RSS_DATABASE['sondakika'];
         const randomFeed = feedList[Math.floor(Math.random() * feedList.length)];
@@ -248,13 +277,10 @@ const NewsroomUI = {
     loadMainFeed(category) {
         const targetCategory = RSS_DATABASE[category] ? category : 'gundem';
         const feedList = RSS_DATABASE[targetCategory];
-        
-        // Verilen kategorideki rastgele bir kaynağı çekiyoruz
         const randomFeed = feedList[Math.floor(Math.random() * feedList.length)];
         const proxyUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(randomFeed)}`;
 
-        this.addLog(`Sistem bağlanıyor: ${targetCategory.toUpperCase()}`, false);
-        
+        this.addLog(`Bağlantı: ${targetCategory.toUpperCase()}`, false);
         document.getElementById('monitor-title').innerHTML = `YÜKLENİYOR: ${targetCategory.toUpperCase()}...`;
         document.getElementById('news-monitor').style.opacity = '0.5';
 
@@ -263,16 +289,17 @@ const NewsroomUI = {
             .then(data => {
                 if (!data || !data.feed) throw new Error("Veri okunamadı.");
                 
-                this.addLog(`Yayın sağlandı: ${data.feed.title}`, false);
+                this.addLog(`Yayın: ${data.feed.title}`, false);
                 AudioEngine.playAlert();
+
+                const overlay = document.getElementById('content-overlay');
+                if(overlay) overlay.style.display = 'none';
 
                 document.getElementById('monitor-title').innerHTML = `<span class="text-slate-500 mr-2">YAYIN:</span> ${targetCategory.toUpperCase()} / ${data.feed.title.toUpperCase()}`;
 
                 let newsHTML = `<div class="grid grid-cols-1 md:grid-cols-2 gap-4">`;
-                
                 data.items.slice(0, 10).forEach((item, index) => { 
                     const cleanDescription = (item.description || '').replace(/<[^>]*>?/gm, '');
-                    
                     newsHTML += `
                         <a href="${item.link}" target="_blank" class="news-card block border-l-4 border-slate-700 bg-slate-800/40 p-4 transition-all cursor-pointer rounded-r">
                             <div class="text-[10px] text-amber-500 font-mono mb-2 flex justify-between">
@@ -299,11 +326,71 @@ const NewsroomUI = {
             });
     },
 
+    // --- KRİPTO PİYASASI MOTORU (LIVE MARKET DATA) ---
+    loadCryptoMarket() {
+        this.addLog(`[BAĞLANTI] Küresel Kripto Ağına sızılıyor...`, false);
+        
+        document.getElementById('monitor-title').innerHTML = `YÜKLENİYOR: KRİPTO PİYASALARI...`;
+        document.getElementById('news-monitor').style.opacity = '0.5';
+
+        // CoinGecko API: Top 12 Coin
+        const apiUrl = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=12&page=1&sparkline=false';
+
+        fetch(apiUrl)
+            .then(res => res.json())
+            .then(data => {
+                if (!data || data.length === 0) throw new Error("Veri okunamadı.");
+                
+                this.addLog(`[OK] Kripto verileri ana monitöre yansıtıldı.`, false);
+                AudioEngine.playAlert();
+
+                const overlay = document.getElementById('content-overlay');
+                if(overlay) overlay.style.display = 'none';
+
+                document.getElementById('monitor-title').innerHTML = `<span class="text-slate-500 mr-2">CANLI VERİ:</span> TOP 12 KRİPTO PARA (USD)`;
+
+                let cryptoHTML = `<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-2">`;
+                
+                data.forEach(coin => {
+                    const isUp = coin.price_change_percentage_24h >= 0;
+                    const colorClass = isUp ? 'text-emerald-400' : 'text-rose-400';
+                    const borderClass = isUp ? 'border-emerald-500/30' : 'border-rose-500/30';
+                    const bgClass = isUp ? 'bg-emerald-900/10' : 'bg-rose-900/10';
+
+                    cryptoHTML += `
+                        <div class="border ${borderClass} ${bgClass} p-4 rounded flex flex-col items-center justify-center transition-all hover:scale-[1.03] hover:border-sky-500/50 cursor-pointer" onclick="window.open('https://coinmarketcap.com/currencies/${coin.id}/', '_blank')">
+                            <img src="${coin.image}" class="w-8 h-8 mb-2 drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]" alt="${coin.symbol}">
+                            <div class="text-slate-400 font-bold font-mono text-xs uppercase">${coin.symbol} / USD</div>
+                            <div class="text-lg font-black text-white my-1">$${coin.current_price.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 6})}</div>
+                            <div class="text-xs font-bold ${colorClass}">
+                                ${isUp ? '▲' : '▼'} ${Math.abs(coin.price_change_percentage_24h).toFixed(2)}%
+                            </div>
+                        </div>
+                    `;
+                });
+                cryptoHTML += `</div>`;
+
+                const monitorEl = document.getElementById('news-monitor');
+                monitorEl.style.opacity = '1';
+                monitorEl.innerHTML = cryptoHTML;
+            })
+            .catch(() => {
+                this.addLog("HATA: Kripto API erişimi reddedildi.", true);
+                document.getElementById('monitor-title').innerHTML = "SİNYAL KAYBI";
+                document.getElementById('news-monitor').style.opacity = '1';
+            });
+    },
+
     processCommand(cmd) {
         if (cmd.startsWith('/akis')) {
             const args = cmd.split(' ');
             const category = args[1] || 'gundem'; 
             this.loadMainFeed(category);
+            return;
+        }
+
+        if (cmd === '/kripto') {
+            this.loadCryptoMarket();
             return;
         }
 
@@ -324,7 +411,8 @@ const NewsroomUI = {
 
         if (cmd === '/help') {
             this.addLog("KOMUT LİSTESİ:", false);
-            this.addLog("/akis [kategori] : Ana ekranı değiştirir", false);
+            this.addLog("/akis [kategori] : Haber ekranını değiştirir", false);
+            this.addLog("/kripto           : Canlı Kripto Piyasasını açar", false);
             this.addLog("/kategoriler     : Kanalları ve kaynak sayısını listeler", false);
             this.addLog("/clear           : Ekranı temizler", false);
             return;
